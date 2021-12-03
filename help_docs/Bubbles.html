@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module Bubbles</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>Bubbles</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cana%5Cdocuments%5Cmaya%5C2020%5Cscripts%5Cbubbles.py">c:\users\ana\documents\maya\2020\scripts\bubbles.py</a></font></td></tr></table>
+    <p><tt>Bubbles<br>
+&nbsp;<br>
+This&nbsp;program&nbsp;has&nbsp;2&nbsp;main&nbsp;functions:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.&nbsp;start&nbsp;simulation&nbsp;-&nbsp;where&nbsp;the&nbsp;bubbles's&nbsp;characteristics&nbsp;are&nbsp;stored&nbsp;in&nbsp;a&nbsp;list,&nbsp;the&nbsp;bubbles&nbsp;then&nbsp;they&nbsp;are&nbsp;dispersed&nbsp;and&nbsp;the&nbsp;geometry&nbsp;is&nbsp;created&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.&nbsp;start&nbsp;keyframe&nbsp;-&nbsp;the&nbsp;bubbles&nbsp;are&nbsp;animated&nbsp;frame&nbsp;by&nbsp;frame&nbsp;while&nbsp;constanly&nbsp;checking&nbsp;collisions,&nbsp;lifespan,&nbsp;forces&nbsp;and&nbsp;the&nbsp;environement's&nbsp;attributes</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-CreateBubble"><strong>CreateBubble</strong></a>(listOfBubbles, i)</dt><dd><tt>Creating&nbsp;a&nbsp;sphere&nbsp;and&nbsp;updating&nbsp;the&nbsp;listOfBubbles&nbsp;with&nbsp;object's&nbsp;name.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listOfBubbles&nbsp;(list)&nbsp;:&nbsp;list&nbsp;containing&nbsp;all&nbsp;the&nbsp;bubble's&nbsp;initial&nbsp;properties<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contains&nbsp;[alive,&nbsp;name&nbsp;of&nbsp;the&nbsp;bubble&nbsp;geometry,&nbsp;radius,&nbsp;posX,&nbsp;posY,&nbsp;posZ,&nbsp;xVelocity,&nbsp;yVelocity,&nbsp;zVelocity,&nbsp;startF,&nbsp;stopF,&nbsp;mass]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;index&nbsp;of&nbsp;the&nbsp;bubble&nbsp;inn&nbsp;listOfBubbles</tt></dd></dl>
+ <dl><dt><a name="-StartSimulation"><strong>StartSimulation</strong></a>(containerObj, emitters, noBubbles, bubbleSize, randSize, densityControl, xVelocity, yVelocity, zVelocity, startFrame, randStartFrame, lifeSpan, randLifespan, listOfForces, animationFrames, envType, gravAcc, waterDensity, wallCollision, bubbleCollision, bubblePop, bounciness)</dt><dd><tt>Fills&nbsp;the&nbsp;listOfBubbles,&nbsp;disperses&nbsp;the&nbsp;bubbles&nbsp;if&nbsp;possible,&nbsp;creates&nbsp;the&nbsp;bubbles&nbsp;and&nbsp;starts&nbsp;animating&nbsp;if&nbsp;the&nbsp;emitters&nbsp;and&nbsp;the&nbsp;container&nbsp;are&nbsp;valid.</tt></dd></dl>
+ <dl><dt><a name="-addEmitter"><strong>addEmitter</strong></a>(emitters, selectionList, containerObj)</dt><dd><tt>If&nbsp;the&nbsp;user&nbsp;forgot&nbsp;to&nbsp;create&nbsp;a&nbsp;container,&nbsp;the&nbsp;function&nbsp;creates&nbsp;one&nbsp;instead&nbsp;and&nbsp;then&nbsp;adds&nbsp;the&nbsp;selected&nbsp;objects&nbsp;to&nbsp;the&nbsp;list&nbsp;of&nbsp;emitters,<br>
+together&nbsp;with&nbsp;their&nbsp;number&nbsp;of&nbsp;vertices.<br>
+&nbsp;<br>
+Parameters<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emitters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;the&nbsp;list&nbsp;of&nbsp;emitters&nbsp;which&nbsp;is&nbsp;formed&nbsp;of&nbsp;lists&nbsp;of&nbsp;2&nbsp;elements&nbsp;(the&nbsp;emitter&nbsp;object,&nbsp;the&nbsp;object's&nbsp;number&nbsp;of&nbsp;vertices)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;selectionList&nbsp;:&nbsp;a&nbsp;list&nbsp;containing&nbsp;the&nbsp;selected&nbsp;objects<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;containerObj&nbsp;&nbsp;:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;object&nbsp;preset&nbsp;as&nbsp;a&nbsp;container&nbsp;or&nbsp;nothing&nbsp;if&nbsp;the&nbsp;container&nbsp;has&nbsp;not&nbsp;been&nbsp;preset</tt></dd></dl>
+ <dl><dt><a name="-addForce"><strong>addForce</strong></a>(listOfForces, forceType, x, y, z, startFrame, endFrame)</dt><dd><tt>Updating&nbsp;the&nbsp;list&nbsp;of&nbsp;forces&nbsp;with&nbsp;a&nbsp;new&nbsp;entry.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listOfForces&nbsp;(list)&nbsp;:&nbsp;contains&nbsp;the&nbsp;attributes&nbsp;of&nbsp;the&nbsp;additional&nbsp;forces&nbsp;or&nbsp;None&nbsp;if&nbsp;it&nbsp;is&nbsp;empty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forceType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(int)&nbsp;:&nbsp;1&nbsp;if&nbsp;the&nbsp;force&nbsp;is&nbsp;constant,&nbsp;2&nbsp;if&nbsp;the&nbsp;corce&nbsp;is&nbsp;random,&nbsp;3&nbsp;if&nbsp;the&nbsp;force&nbsp;is&nbsp;smooth&nbsp;random<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(float)&nbsp;:&nbsp;velocity&nbsp;in&nbsp;x&nbsp;direction<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(float)&nbsp;:&nbsp;velocity&nbsp;in&nbsp;y&nbsp;direction<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(float)&nbsp;:&nbsp;velocity&nbsp;in&nbsp;z&nbsp;direction<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;startFrame&nbsp;&nbsp;&nbsp;&nbsp;(int)&nbsp;:&nbsp;the&nbsp;first&nbsp;frame&nbsp;when&nbsp;the&nbsp;force&nbsp;is&nbsp;active<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;endFrame&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(int)&nbsp;:&nbsp;the&nbsp;last&nbsp;frame&nbsp;when&nbsp;the&nbsp;force&nbsp;is&nbsp;active</tt></dd></dl>
+ <dl><dt><a name="-blockAttributes"><strong>blockAttributes</strong></a>(obj)</dt><dd><tt>Blocking&nbsp;the&nbsp;attributes&nbsp;of&nbsp;the&nbsp;object.</tt></dd></dl>
+ <dl><dt><a name="-bubblesSystemUI"><strong>bubblesSystemUI</strong></a>()</dt><dd><tt>create&nbsp;the&nbsp;User&nbsp;interface&nbsp;for&nbsp;creating&nbsp;a&nbsp;container,&nbsp;adding&nbsp;emitter(s),&nbsp;bubble,&nbsp;collision&nbsp;and&nbsp;environement&nbsp;properties,&nbsp;adding&nbsp;extra&nbsp;forces<br>
+choosing&nbsp;the&nbsp;strating&nbsp;frame(s)&nbsp;and&nbsp;the&nbsp;lifespam&nbsp;of&nbsp;the&nbsp;bbubbles,&nbsp;the&nbsp;number&nbsp;of&nbsp;frames&nbsp;to&nbsp;be&nbsp;keyframed&nbsp;and&nbsp;strating&nbsp;to&nbsp;create&nbsp;the&nbsp;animation&nbsp;<br>
+procedurally</tt></dd></dl>
+ <dl><dt><a name="-cancelProc"><strong>cancelProc</strong></a>(*pArgs)</dt><dd><tt>close&nbsp;up&nbsp;the&nbsp;popup&nbsp;window</tt></dd></dl>
+ <dl><dt><a name="-checkCollision"><strong>checkCollision</strong></a>(r1, x1, y1, z1, r2, x2, y2, z2)</dt><dd><tt>Checks&nbsp;collision&nbsp;between&nbsp;two&nbsp;spheres&nbsp;in&nbsp;3D&nbsp;space.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r1&nbsp;(float)&nbsp;:&nbsp;radius&nbsp;of&nbsp;the&nbsp;first&nbsp;sphere<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x1&nbsp;(float)&nbsp;:&nbsp;x&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;first&nbsp;sphere<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y1&nbsp;(float)&nbsp;:&nbsp;y&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;first&nbsp;sphere<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z1&nbsp;(float)&nbsp;:&nbsp;z&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;first&nbsp;sphere&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r1&nbsp;(float)&nbsp;:&nbsp;radius&nbsp;of&nbsp;the&nbsp;second&nbsp;sphere<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x1&nbsp;(float)&nbsp;:&nbsp;x&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;second&nbsp;sphere<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y1&nbsp;(float)&nbsp;:&nbsp;y&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;second&nbsp;sphere<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z1&nbsp;(float)&nbsp;:&nbsp;z&nbsp;coordinate&nbsp;of&nbsp;the&nbsp;second&nbsp;sphere<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;-&nbsp;if&nbsp;the&nbsp;spheres&nbsp;collide<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;-&nbsp;if&nbsp;the&nbsp;spheres&nbsp;don't&nbsp;collide</tt></dd></dl>
+ <dl><dt><a name="-checkWallCollision"><strong>checkWallCollision</strong></a>(r, x, y, z, containerObj)</dt><dd><tt>Checks&nbsp;if&nbsp;a&nbsp;sphere&nbsp;is&nbsp;inside&nbsp;a&nbsp;container&nbsp;shaped&nbsp;as&nbsp;a&nbsp;rectangular&nbsp;parallelepiped&nbsp;in&nbsp;3D&nbsp;space.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(float)&nbsp;:&nbsp;radius&nbsp;of&nbsp;the&nbsp;sphere<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(float)&nbsp;:&nbsp;x&nbsp;coordinate&nbsp;for&nbsp;the&nbsp;sphere<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(float)&nbsp;:&nbsp;y&nbsp;coordinate&nbsp;for&nbsp;the&nbsp;sphere<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(float)&nbsp;:&nbsp;z&nbsp;coordinate&nbsp;for&nbsp;the&nbsp;sphere&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;containerObj&nbsp;(list):&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;object&nbsp;shaped&nbsp;as&nbsp;a&nbsp;rectangular&nbsp;parallelepiped&nbsp;serving&nbsp;as&nbsp;a&nbsp;container<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rez&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(list):&nbsp;list&nbsp;of&nbsp;6&nbsp;elements&nbsp;of&nbsp;which&nbsp;each&nbsp;element&nbsp;is&nbsp;1,&nbsp;if&nbsp;the&nbsp;sphere&nbsp;intersects&nbsp;the&nbsp;corresponding&nbsp;face&nbsp;&nbsp;or&nbsp;is&nbsp;outside&nbsp;of&nbsp;the&nbsp;container&nbsp;on&nbsp;the&nbsp;same&nbsp;side&nbsp;with&nbsp;the&nbsp;face&nbsp;and&nbsp;0&nbsp;if&nbsp;it&nbsp;is&nbsp;not&nbsp;the&nbsp;case</tt></dd></dl>
+ <dl><dt><a name="-createContainer"><strong>createContainer</strong></a>(containerObj, emitters)</dt><dd><tt>Creates&nbsp;a&nbsp;new&nbsp;container&nbsp;and&nbsp;empties&nbsp;the&nbsp;list&nbsp;of&nbsp;emitters.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;containerObj&nbsp;(list)&nbsp;:&nbsp;list&nbsp;of&nbsp;2&nbsp;elements&nbsp;(the&nbsp;name&nbsp;of&nbsp;the&nbsp;container&nbsp;object&nbsp;and&nbsp;a&nbsp;boolean)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emitters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(list)&nbsp;:&nbsp;list&nbsp;of&nbsp;list&nbsp;object(s)&nbsp;containing&nbsp;pairs&nbsp;of&nbsp;object&nbsp;and&nbsp;its&nbsp;number&nbsp;of&nbsp;vertices</tt></dd></dl>
+ <dl><dt><a name="-deleteList"><strong>deleteList</strong></a>(myList)</dt><dd><tt>Deleting&nbsp;all&nbsp;of&nbsp;the&nbsp;elements&nbsp;in&nbsp;the&nbsp;list.</tt></dd></dl>
+ <dl><dt><a name="-disperseBubbles"><strong>disperseBubbles</strong></a>(listOfBubbles, containerObj, emitters, totalVertexNo)</dt><dd><tt>Disperses&nbsp;the&nbsp;bubbles/spheres&nbsp;in&nbsp;their&nbsp;container&nbsp;by&nbsp;using&nbsp;the&nbsp;vertexes&nbsp;of&nbsp;the&nbsp;emitter(s).<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listOfBubbles&nbsp;(list)&nbsp;:&nbsp;list&nbsp;containing&nbsp;all&nbsp;the&nbsp;bubble&nbsp;objects&nbsp;and&nbsp;their&nbsp;properties<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contains&nbsp;[alive,&nbsp;name&nbsp;of&nbsp;the&nbsp;bubble&nbsp;geometry,&nbsp;radius,&nbsp;posX,&nbsp;posY,&nbsp;posZ,&nbsp;xVelocity,&nbsp;yVelocity,&nbsp;zVelocity,&nbsp;startF,&nbsp;stopF,&nbsp;mass]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;containerObj&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;object&nbsp;shaped&nbsp;as&nbsp;a&nbsp;rectangular&nbsp;parallelepiped&nbsp;serving&nbsp;as&nbsp;a&nbsp;container<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emitters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(list)&nbsp;:&nbsp;list&nbsp;of&nbsp;list&nbsp;object(s)&nbsp;containing&nbsp;pairs&nbsp;of&nbsp;object&nbsp;and&nbsp;its&nbsp;number&nbsp;of&nbsp;vertices<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;totalVertexNo&nbsp;&nbsp;(int)&nbsp;:&nbsp;the&nbsp;total&nbsp;number&nbsp;of&nbsp;vertices&nbsp;in&nbsp;the&nbsp;emitter(s)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;-&nbsp;if&nbsp;the&nbsp;dispersion&nbsp;falied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;-&nbsp;if&nbsp;dispersing&nbsp;was&nbsp;possible</tt></dd></dl>
+ <dl><dt><a name="-fillListOfBubbles"><strong>fillListOfBubbles</strong></a>(noBubbles, bubbleSize, randSize, density, xVelocity, yVelocity, zVelocity, startFrame, randStartFrame, lifeSpan, randLifespan)</dt><dd><tt>Fills&nbsp;the&nbsp;list&nbsp;with&nbsp;the&nbsp;bubbles'&nbsp;initiasl&nbsp;attributes.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;noBubbles&nbsp;&nbsp;&nbsp;(int)&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;number&nbsp;of&nbsp;bubbles,&nbsp;indicating&nbsp;the&nbsp;number&nbsp;of&nbsp;initial&nbsp;enttries&nbsp;for&nbsp;the&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bubbleSize&nbsp;&nbsp;&nbsp;(float)&nbsp;:&nbsp;diameter&nbsp;of&nbsp;the&nbsp;bubbles<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;randSize&nbsp;&nbsp;&nbsp;&nbsp;(float)&nbsp;&nbsp;:&nbsp;number&nbsp;used&nbsp;for&nbsp;calculating&nbsp;rando&nbsp;sizes&nbsp;for&nbsp;the&nbsp;bubbles&nbsp;when&nbsp;its&nbsp;valus&nbsp;is&nbsp;greater&nbsp;than&nbsp;0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;density&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(float)&nbsp;:&nbsp;theoretical&nbsp;density&nbsp;of&nbsp;the&nbsp;bubbles<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xVelocity&nbsp;&nbsp;&nbsp;&nbsp;(float)&nbsp;:&nbsp;initial&nbsp;velocity&nbsp;of&nbsp;all&nbsp;of&nbsp;the&nbsp;bubbles&nbsp;in&nbsp;the&nbsp;x&nbsp;direction<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yVelocity&nbsp;&nbsp;&nbsp;&nbsp;(float)&nbsp;:&nbsp;initial&nbsp;velocity&nbsp;of&nbsp;all&nbsp;of&nbsp;the&nbsp;bubbles&nbsp;in&nbsp;the&nbsp;y&nbsp;direction<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;zVelocity&nbsp;&nbsp;&nbsp;&nbsp;(float)&nbsp;:&nbsp;initial&nbsp;velocity&nbsp;of&nbsp;all&nbsp;of&nbsp;the&nbsp;bubbles&nbsp;in&nbsp;the&nbsp;z&nbsp;direction<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;startFrame&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(int)&nbsp;:&nbsp;starting&nbsp;frame&nbsp;for&nbsp;the&nbsp;bubble(s)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;randStartFrame&nbsp;(int)&nbsp;:&nbsp;number&nbsp;used&nbsp;to&nbsp;offset&nbsp;the&nbsp;starting&nbsp;frame&nbsp;randomly&nbsp;when&nbsp;it&nbsp;is&nbsp;greater&nbsp;than&nbsp;0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lifeSpan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(int)&nbsp;:&nbsp;the&nbsp;number&nbsp;of&nbsp;frames&nbsp;for&nbsp;which&nbsp;the&nbsp;bubble&nbsp;is&nbsp;visible&nbsp;if&nbsp;no&nbsp;external&nbsp;factor&nbsp;makes&nbsp;it&nbsp;pop/kills&nbsp;it<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;randLifespan&nbsp;&nbsp;&nbsp;(int)&nbsp;:&nbsp;number&nbsp;used&nbsp;to&nbsp;offset&nbsp;the&nbsp;lifespan&nbsp;randomly&nbsp;when&nbsp;it&nbsp;is&nbsp;greater&nbsp;than&nbsp;0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listOfBubbles&nbsp;(list)&nbsp;:&nbsp;list&nbsp;containing&nbsp;all&nbsp;the&nbsp;bubble's&nbsp;initial&nbsp;properties</tt></dd></dl>
+ <dl><dt><a name="-getTotalVertexNo"><strong>getTotalVertexNo</strong></a>(emitters)</dt><dd><tt>Adds&nbsp;the&nbsp;vertex&nbsp;number&nbsp;for&nbsp;each&nbsp;emitter.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emitters&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(list)&nbsp;:&nbsp;list&nbsp;of&nbsp;list&nbsp;object(s)&nbsp;containing&nbsp;pairs&nbsp;of&nbsp;object&nbsp;and&nbsp;its&nbsp;number&nbsp;of&nbsp;vertices<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;totalvertexNo&nbsp;(int)&nbsp;:&nbsp;the&nbsp;number&nbsp;of&nbsp;total&nbsp;verticesof&nbsp;the&nbsp;emitters</tt></dd></dl>
+ <dl><dt><a name="-getVtxNumber"><strong>getVtxNumber</strong></a>(object)</dt><dd><tt>Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;vertices&nbsp;in&nbsp;object.</tt></dd></dl>
+ <dl><dt><a name="-mergeBubbles"><strong>mergeBubbles</strong></a>(i, j, frame, listOfBubbles, bubbleGroup)</dt><dd><tt>Merges&nbsp;2&nbsp;bubbles&nbsp;into&nbsp;one&nbsp;withe&nbsp;the&nbsp;corresponding&nbsp;attributes.<br>
+&nbsp;<br>
+i&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(int)&nbsp;&nbsp;:&nbsp;index&nbsp;of&nbsp;the&nbsp;first&nbsp;bubble&nbsp;in&nbsp;listOfBubbles<br>
+j&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(int)&nbsp;&nbsp;:&nbsp;index&nbsp;of&nbsp;the&nbsp;second&nbsp;bubble&nbsp;in&nbsp;listOfBubbles<br>
+frame&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(int)&nbsp;&nbsp;:&nbsp;the&nbsp;frame&nbsp;when&nbsp;the&nbsp;merging&nbsp;takes&nbsp;place<br>
+listOfBubbles&nbsp;(list)&nbsp;:&nbsp;list&nbsp;containing&nbsp;all&nbsp;the&nbsp;bubble&nbsp;objects&nbsp;and&nbsp;their&nbsp;properties<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contains&nbsp;[alive,&nbsp;name&nbsp;of&nbsp;the&nbsp;bubble&nbsp;geometry,&nbsp;radius,&nbsp;posX,&nbsp;posY,&nbsp;posZ,&nbsp;xVelocity,&nbsp;yVelocity,&nbsp;zVelocity,&nbsp;startF,&nbsp;stopF,&nbsp;mass]<br>
+bubbleGroup&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;the&nbsp;group&nbsp;for&nbsp;all&nbsp;of&nbsp;the&nbsp;bubbles&nbsp;created&nbsp;for&nbsp;this&nbsp;animation</tt></dd></dl>
+ <dl><dt><a name="-moveObject"><strong>moveObject</strong></a>(object, posX, posY, posZ, frame)</dt><dd><tt>Moving&nbsp;an&nbsp;object&nbsp;and&nbsp;keyframing&nbsp;it.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;object&nbsp;(string)&nbsp;:&nbsp;short&nbsp;name&nbsp;of&nbsp;the&nbsp;object&nbsp;to&nbsp;be&nbsp;scaled<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;posX&nbsp;&nbsp;&nbsp;&nbsp;(float)&nbsp;:&nbsp;moving&nbsp;value&nbsp;in&nbsp;the&nbsp;x&nbsp;direction<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;posY&nbsp;&nbsp;&nbsp;&nbsp;(float)&nbsp;:&nbsp;moving&nbsp;value&nbsp;in&nbsp;the&nbsp;y&nbsp;direction<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;posZ&nbsp;&nbsp;&nbsp;&nbsp;(float)&nbsp;:&nbsp;moving&nbsp;value&nbsp;in&nbsp;the&nbsp;z&nbsp;direction<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;frame&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(int)&nbsp;:&nbsp;frame&nbsp;at&nbsp;which&nbsp;the&nbsp;object&nbsp;has&nbsp;to&nbsp;be&nbsp;keyframed</tt></dd></dl>
+ <dl><dt><a name="-popBubble"><strong>popBubble</strong></a>(i, listOfBubbles, frame)</dt><dd><tt>Turns&nbsp;off&nbsp;the&nbsp;visibility&nbsp;of&nbsp;bubble&nbsp;with&nbsp;the&nbsp;given&nbsp;index&nbsp;and&nbsp;for&nbsp;the&nbsp;given&nbsp;frame.<br>
+&nbsp;<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;i&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(int)&nbsp;:&nbsp;index&nbsp;of&nbsp;the&nbsp;bubble&nbsp;in&nbsp;list&nbsp;listOfBubbles<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listOfBubbles&nbsp;(list)&nbsp;:&nbsp;list&nbsp;containing&nbsp;all&nbsp;the&nbsp;bubble&nbsp;objects&nbsp;and&nbsp;their&nbsp;properties<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contains&nbsp;[alive,&nbsp;name&nbsp;of&nbsp;the&nbsp;bubble&nbsp;geometry,&nbsp;radius,&nbsp;posX,&nbsp;posY,&nbsp;posZ,&nbsp;xVelocity,&nbsp;yVelocity,&nbsp;zVelocity,&nbsp;startF,&nbsp;stopF,&nbsp;mass]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;frame&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(int)&nbsp;:&nbsp;the&nbsp;frame&nbsp;needed&nbsp;to&nbsp;keyframe&nbsp;thevisibility</tt></dd></dl>
+ <dl><dt><a name="-startKeyframing"><strong>startKeyframing</strong></a>(listOfBubbles, listOfForces, containerObj, fps, animationFrames, envType, gravAcc, waterDensity, wallCollisionQ, bubbleCollisionQ, bubblePopQ, bounciness, bubbleGroup, bubbleDensity)</dt><dd><tt>Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listOfBubbles&nbsp;&nbsp;&nbsp;(list)&nbsp;:&nbsp;list&nbsp;containing&nbsp;all&nbsp;the&nbsp;bubble's&nbsp;initial&nbsp;properties<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contains&nbsp;[alive,&nbsp;name&nbsp;of&nbsp;the&nbsp;bubble&nbsp;geometry,&nbsp;radius,&nbsp;posX,&nbsp;posY,&nbsp;posZ,&nbsp;xVelocity,&nbsp;yVelocity,&nbsp;zVelocity,&nbsp;startF,&nbsp;stopF,&nbsp;mass]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listOfForces&nbsp;&nbsp;&nbsp;&nbsp;(list)&nbsp;:&nbsp;contains&nbsp;the&nbsp;attributes&nbsp;of&nbsp;the&nbsp;additional&nbsp;forces<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forceType,&nbsp;x,&nbsp;y,&nbsp;z,&nbsp;startFrame,&nbsp;endFrame<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;containerObj&nbsp;&nbsp;&nbsp;&nbsp;(list)&nbsp;:&nbsp;the&nbsp;name&nbsp;of&nbsp;the&nbsp;object&nbsp;shaped&nbsp;as&nbsp;a&nbsp;rectangular&nbsp;parallelepiped&nbsp;serving&nbsp;as&nbsp;a&nbsp;container&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fps&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(int)&nbsp;:&nbsp;the&nbsp;framerate&nbsp;(frames&nbsp;per&nbsp;second)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;animationFrames&nbsp;&nbsp;(int)&nbsp;:&nbsp;the&nbsp;numeber&nbsp;of&nbsp;frames&nbsp;in&nbsp;the&nbsp;animation/to&nbsp;be&nbsp;keyframed&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;envType&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(int)&nbsp;:&nbsp;the&nbsp;type&nbsp;of&nbsp;environement&nbsp;(1&nbsp;-&nbsp;underwater,&nbsp;2&nbsp;-&nbsp;air)&nbsp;where&nbsp;the&nbsp;bubbles&nbsp;being&nbsp;animated<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gravAcc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(float)&nbsp;:&nbsp;gravitational&nbsp;acceleration&nbsp;value<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;waterDensity&nbsp;&nbsp;&nbsp;(float)&nbsp;:&nbsp;theoretical&nbsp;density&nbsp;of&nbsp;the&nbsp;water<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;wallCollisionQ&nbsp;&nbsp;&nbsp;(int)&nbsp;:&nbsp;1&nbsp;if&nbsp;wall&nbsp;collision&nbsp;is&nbsp;considered,&nbsp;2&nbsp;if&nbsp;it&nbsp;is&nbsp;ignored<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bubbleCollisionQ&nbsp;(int)&nbsp;:&nbsp;1&nbsp;if&nbsp;bubble&nbsp;collision&nbsp;is&nbsp;considered,&nbsp;2&nbsp;if&nbsp;it&nbsp;is&nbsp;ignored<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bubblePopQ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(int)&nbsp;:&nbsp;1&nbsp;-&nbsp;bubbles&nbsp;pop&nbsp;when&nbsp;they&nbsp;touch,&nbsp;2&nbsp;bubbles&nbsp;merge&nbsp;when&nbsp;they&nbsp;touch<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bounciness&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(float)&nbsp;:&nbsp;0&nbsp;to&nbsp;1&nbsp;values,&nbsp;0&nbsp;when&nbsp;tehre&nbsp;is&nbsp;no&nbsp;collision&nbsp;response&nbsp;and&nbsp;1&nbsp;for&nbsp;full&nbsp;collision&nbsp;response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bubbleGroup&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;the&nbsp;group&nbsp;for&nbsp;all&nbsp;of&nbsp;the&nbsp;bubbles&nbsp;created&nbsp;for&nbsp;this&nbsp;animation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bubbleDensity&nbsp;&nbsp;(float)&nbsp;:&nbsp;theoretical&nbsp;density&nbsp;of&nbsp;the&nbsp;bubbles</tt></dd></dl>
+ <dl><dt><a name="-updateForces"><strong>updateForces</strong></a>(listOfForces, frame)</dt><dd><tt>Updating&nbsp;the&nbsp;values&nbsp;of&nbsp;the&nbsp;additional&nbsp;forces&nbsp;and&nbsp;returning&nbsp;the&nbsp;resulting&nbsp;force.<br>
+Parameters:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listOfForces&nbsp;(list)&nbsp;:&nbsp;contains&nbsp;the&nbsp;attributes&nbsp;of&nbsp;the&nbsp;additional&nbsp;forces<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;forceType,&nbsp;x,&nbsp;y,&nbsp;z,&nbsp;startFrame,&nbsp;endFrame<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;frame&nbsp;(int)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;the&nbsp;current&nbsp;frame&nbsp;of&nbsp;the&nbsp;animation</tt></dd></dl>
+</td></tr></table>
+</body></html>

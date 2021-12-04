@@ -2,6 +2,8 @@
 
 Bubbles – Python script for Maya to generate bubble animation resembling real-world movement and interaction.
 
+[Video results here](https://vimeo.com/653191393)
+
 ![image](https://user-images.githubusercontent.com/78536620/144664648-743d31db-2607-4e82-8dbc-d13693542f11.png)
 
 Manual
